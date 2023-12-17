@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from Process.NV import Create_NV
 
 from Process.phongBan import Create_PB
+from Process.KH import Create_KH
 root = tk.Tk()
 root.geometry('750x750')
 root.title('Tài sản số hóa')
@@ -218,7 +219,6 @@ def khachhang_page():
         tree.heading("MST", text="MST", anchor=tk.CENTER)
         tree.heading("ĐC", text="ĐC", anchor=tk.CENTER)
         tree.heading("HĐ", text="HĐ", anchor=tk.CENTER)
-
         for i in range(4):
             tree.column(i, width=180, anchor=tk.CENTER)
 
@@ -239,12 +239,15 @@ def khachhang_page():
 
         tree.pack(side=tk.TOP)
         tree.configure(yscrollcommand=scroll_y.set)
-        
+    def open_new_window():
+        create_khachhang_root = tk.Tk()
+        home_page = Create_KH(create_khachhang_root)
+        create_khachhang_root.mainloop()
     def create_function_buttons(parent_frame):
         function_buttons_frame = ttk.Frame(parent_frame)
         function_buttons_frame.pack(side=tk.TOP, pady=10)
 
-        button_add = tk.Button(function_buttons_frame, text="Thêm", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add = tk.Button(function_buttons_frame, text="Thêm",command = open_new_window, font=("Arial", 14), bg="#5f6f79", fg="black")
         button_add.pack(side=tk.LEFT, padx=10)
 
         button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
@@ -287,6 +290,37 @@ def tailieu_page():
     tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
     tailieu_page_lb.pack(pady=30)
     tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def tscd_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def ccdc_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def sanpham_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def nvl_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def baibao_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+def vbpq_page():
+    tailieu_page_fm = tk.Frame(main_fm)
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb.pack(pady=30)
+    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+
 
 main_fm = tk.Frame(root, bg='gray')
 main_fm.pack(fill=tk.BOTH, expand=True)
