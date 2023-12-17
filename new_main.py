@@ -8,6 +8,9 @@ from Process.KH import Create_KH
 from Process.NCC import Create_NCC
 from Process.taiLieu import Create_TL
 from Process.SP import Create_SP
+from Process.NVL import Create_NVL
+from Process.BB import Create_BB
+from Process.VBPQ import Create_VBPQ
 root = tk.Tk()
 root.geometry('1400x500')
 root.title('Tài sản số hóa')
@@ -76,6 +79,18 @@ sp_btn.place(x=978, y=0, width=125, height=35)
 
 sp_indicator_lb = tk.Label(options_fm, bg='#fff')
 sp_indicator_lb.place(x=1000, y=30, width=80, height=2)
+
+bb_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=bb_indicator_lb, page=baibao_page))
+bb_btn.place(x=1103, y=0, width=125, height=35)
+
+bb_indicator_lb = tk.Label(options_fm, bg='#fff')
+bb_indicator_lb.place(x=1125, y=30, width=80, height=2)
+
+vbpq_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=vbpq_indicator_lb, page=vbpq_page))
+vbpq_btn.place(x=1228, y=0, width=125, height=35)
+
+vbpq_indicator_lb = tk.Label(options_fm, bg='#fff')
+vbpq_indicator_lb.place(x=1250, y=30, width=80, height=2)
 
 options_fm.pack(pady=5)
 options_fm.pack_propagate(False)
@@ -499,17 +514,17 @@ def tailieu_page():
     create_function_buttons(tailieu_page_fm)
 def tscd_page():
     tailieu_page_fm = tk.Frame(main_fm)
-    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài sản cố định', font=('Arial', 25), fg='#0097e8')
     tailieu_page_lb.pack(pady=30)
     tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
 def ccdc_page():
     tailieu_page_fm = tk.Frame(main_fm)
-    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Công cụ dụng cụ', font=('Arial', 25), fg='#0097e8')
     tailieu_page_lb.pack(pady=30)
     tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
 def sanpham_page():
     sanpham_page_fm = tk.Frame(main_fm)
-    sanpham_page_lb = tk.Label(sanpham_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
+    sanpham_page_lb = tk.Label(sanpham_page_fm, text='Sản phẩm', font=('Arial', 25), fg='#0097e8')
     sanpham_page_lb.pack(pady=30)
     sanpham_page_fm.pack(fill=tk.BOTH, expand=True)
 
@@ -610,7 +625,7 @@ def nvl_page():
         tree.configure(yscrollcommand=scroll_y.set)
     def open_new_window():
         create_nvl_root = tk.Tk()
-        home_page = Create_SP(create_nvl_root)
+        home_page = Create_NVL(create_nvl_root)
         create_nvl_root.mainloop()
     def create_function_buttons(parent_frame):
         function_buttons_frame = ttk.Frame(parent_frame)
@@ -640,15 +655,133 @@ def nvl_page():
     create_info_table(nvl_page_fm)
     create_function_buttons(nvl_page_fm)
 def baibao_page():
-    tailieu_page_fm = tk.Frame(main_fm)
-    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
-    tailieu_page_lb.pack(pady=30)
-    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+    bb_page_fm = tk.Frame(main_fm)
+    bb_page_lb = tk.Label(bb_page_fm, text='Bài báo', font=('Arial', 25), fg='#0097e8')
+    bb_page_lb.pack(pady=30)
+    bb_page_fm.pack(fill=tk.BOTH, expand=True)
+
+    def create_info_table(parent_frame):
+        tree = ttk.Treeview(parent_frame, columns=("MABB", "Tên bài báo", "Ngày viết", "Nhà báo","Người quản lý"), show="headings", style="Treeview")
+        tree.heading("MABB", text="MABB", anchor=tk.CENTER)
+        tree.heading("Tên bài báo", text="Tên bài báo", anchor=tk.CENTER)
+        tree.heading("Ngày viết", text="Ngày viết", anchor=tk.CENTER)
+        tree.heading("Nhà báo", text="Nhà báo", anchor=tk.CENTER)
+        tree.heading("Người quản lý", text="Người quản lý", anchor=tk.CENTER)
+        for i in range(4):
+            tree.column(i, width=180, anchor=tk.CENTER)
+
+        # Sample data for the table
+        data = [
+            ("1", "Người 1", "Quản lý", "$5000",""),
+            ("2", "Người 2", "Nhân viên", "$3000",""),
+            ("3", "Người 3", "Nhân viên", "$3500",""),
+            ("4", "Người 4", "Quản lý", "$4800",""),
+        ]
+
+        for row in data:
+            tree.insert("", "end", values=row)
+
+        # Set up vertical scrollbar
+        scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
+        scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
+
+        tree.pack(side=tk.TOP)
+        tree.configure(yscrollcommand=scroll_y.set)
+    def open_new_window():
+        create_bb_root = tk.Tk()
+        home_page = Create_BB(create_bb_root)
+        create_bb_root.mainloop()
+    def create_function_buttons(parent_frame):
+        function_buttons_frame = ttk.Frame(parent_frame)
+        function_buttons_frame.pack(side=tk.TOP, pady=10)
+
+        button_add = tk.Button(function_buttons_frame, text="Thêm",command = open_new_window, font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add.pack(side=tk.LEFT, padx=10)
+
+        button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_edit.pack(side=tk.LEFT, padx=10)
+
+        button_delete = tk.Button(function_buttons_frame, text="Xóa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_delete.pack(side=tk.LEFT, padx=10)
+
+        button_logout = tk.Button(function_buttons_frame, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_logout.pack(side=tk.LEFT, padx=10)
+
+
+    def insert_options(tree, options):
+        for option, sub_options in options:
+            item = tree.insert("", "end", values=(option,))
+            if sub_options:
+                insert_options(tree, sub_options)
+                tree.item(item, open=True)
+
+        # Tạo bảng thông tin
+    create_info_table(bb_page_fm)
+    create_function_buttons(bb_page_fm)
 def vbpq_page():
-    tailieu_page_fm = tk.Frame(main_fm)
-    tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
-    tailieu_page_lb.pack(pady=30)
-    tailieu_page_fm.pack(fill=tk.BOTH, expand=True)
+    vbpq_page_fm = tk.Frame(main_fm)
+    vbpq_page_lb = tk.Label(vbpq_page_fm, text='Văn bản pháp quy', font=('Arial', 25), fg='#0097e8')
+    vbpq_page_lb.pack(pady=30)
+    vbpq_page_fm.pack(fill=tk.BOTH, expand=True)
+
+    def create_info_table(parent_frame):
+        tree = ttk.Treeview(parent_frame, columns=("MAVBPQ", "Tên VBPQ", "Ngày ban hành", "Nhân viên ban hành","Người quản lý"), show="headings", style="Treeview")
+        tree.heading("MAVBPQ", text="MAVBPQ", anchor=tk.CENTER)
+        tree.heading("Tên VBPQ", text="Tên VBPQ", anchor=tk.CENTER)
+        tree.heading("Ngày ban hành", text="Ngày ban hành", anchor=tk.CENTER)
+        tree.heading("Nhân viên ban hành", text="Nhân viên ban hành", anchor=tk.CENTER)
+        tree.heading("Người quản lý", text="Người quản lý", anchor=tk.CENTER)
+        for i in range(4):
+            tree.column(i, width=180, anchor=tk.CENTER)
+
+        # Sample data for the table
+        data = [
+            ("1", "Người 1", "Quản lý", "$5000",""),
+            ("2", "Người 2", "Nhân viên", "$3000",""),
+            ("3", "Người 3", "Nhân viên", "$3500",""),
+            ("4", "Người 4", "Quản lý", "$4800",""),
+        ]
+
+        for row in data:
+            tree.insert("", "end", values=row)
+
+        # Set up vertical scrollbar
+        scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
+        scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
+
+        tree.pack(side=tk.TOP)
+        tree.configure(yscrollcommand=scroll_y.set)
+    def open_new_window():
+        create_vbpq_root = tk.Tk()
+        home_page = Create_VBPQ(create_vbpq_root)
+        create_vbpq_root.mainloop()
+    def create_function_buttons(parent_frame):
+        function_buttons_frame = ttk.Frame(parent_frame)
+        function_buttons_frame.pack(side=tk.TOP, pady=10)
+
+        button_add = tk.Button(function_buttons_frame, text="Thêm",command = open_new_window, font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add.pack(side=tk.LEFT, padx=10)
+
+        button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_edit.pack(side=tk.LEFT, padx=10)
+
+        button_delete = tk.Button(function_buttons_frame, text="Xóa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_delete.pack(side=tk.LEFT, padx=10)
+
+        button_logout = tk.Button(function_buttons_frame, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_logout.pack(side=tk.LEFT, padx=10)
+
+
+    def insert_options(tree, options):
+        for option, sub_options in options:
+            item = tree.insert("", "end", values=(option,))
+            if sub_options:
+                insert_options(tree, sub_options)
+                tree.item(item, open=True)
+
+        # Tạo bảng thông tin
+    create_info_table(vbpq_page_fm)
+    create_function_buttons(vbpq_page_fm)
 
 
 main_fm = tk.Frame(root, bg='gray')

@@ -1,57 +1,61 @@
-import tkinter
+import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
-def Create_DH():
-    mabb = mabb_entry.get()
-    tenbb =tenbb_entry.get()
-    ngayviet = ngayviet_entry.get()
-    nb = nb_entry.get()
-    nvql = nvql_combobox.get()
+class Create_BB:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Thêm mới bài báo")
+        self.root.geometry("500x400")  # Kích thước cửa sổ
 
-    if not mabb or not tenbb or not ngayviet or not nb or not nvql :
-        tkinter.messagebox.showwarning(title="Error", message="Thông tin không được bỏ trống")
-    else:
-        print("Mã NV: ", mabb, "Tên NV: ", tenbb, "Phòng ban: ", ngayviet)
-        print("NB:  ", nb, "NVQL: ", nvql)
-        print("------------------------------------------")
+        # Tạo Frame chứa cả cột tùy chọn và bảng thông tin
+        frame = ttk.Frame(root, style="TFrame")
+        frame.pack(fill=tk.BOTH, expand=True)
 
-window = tkinter.Tk()
-window.title("Thêm mới Bài báo")
+        self.create_ui(frame)
 
-frame = tkinter.Frame(window)
-frame.pack()
+    def create(self):
+        mabb = self.mabb_entry.get()
+        tenbb = self.tenbb_entry.get()
+        ngayviet =  self.ngayviet_entry.get()
+        nb =  self.nb_entry.get()
+        nvql =  self.nvql_combobox.get()
+        if not mabb or not tenbb or not ngayviet or not nb or not nvql:
+            tk.messagebox.showwarning(title="Error", message="Không được bỏ trống !!!")
+        else:
+            print("Mã HĐ: ", "Tên HĐ: ",  "Ngày tải lên: ",  "ngày hợp đồng:")
+            print("Nhân viên:  ",  "tệp: ", "đối tượng:")
+            print("------------------------------------------")
 
-# Saving User Info
-user_info_frame = tkinter.LabelFrame(frame)
-user_info_frame.grid(row=0, column=0, padx=20, pady=10)
+    def create_ui(self, parent_frame):
 
-mabb_label = tkinter.Label(user_info_frame, text="Mã bài báo")
-mabb_label.grid(row=0, column=0, padx = 10)
-mabb_entry = tkinter.Entry(user_info_frame)
-mabb_entry.grid(row=1, column=0, padx = 10)
+        user_info_frame = tk.LabelFrame(parent_frame)
+        user_info_frame.grid(row=0, column=0, padx=20, pady=10)
 
-tenbb_label = tkinter.Label(user_info_frame, text="Tên bài báo")
-tenbb_label.grid(row=0, column=1)
-tenbb_entry = tkinter.Entry(user_info_frame)
-tenbb_entry.grid(row=1, column=1)
+        mabb_label = tk.Label(user_info_frame, text="Mã bài báo")
+        mabb_label.grid(row=0, column=0, padx = 10)
+        self.mabb_entry = tk.Entry(user_info_frame)
+        self.mabb_entry.grid(row=1, column=0, padx = 10)
 
-nviet_label = tkinter.Label(user_info_frame, text="Ngày viết")
-nviet_label.grid(row=0, column=2)
-ngayviet_entry = tkinter.Entry(user_info_frame)
-ngayviet_entry.grid(row=1, column=2)
+        tenbb_label = tk.Label(user_info_frame, text="Tên bài báo")
+        tenbb_label.grid(row=0, column=1)
+        self.tenbb_entry = tk.Entry(user_info_frame)
+        self.tenbb_entry.grid(row=1, column=1)
 
-nb_label = tkinter.Label(user_info_frame, text="Nhà báo")
-nb_label.grid(row=2, column=0)
-nb_entry = tkinter.Entry(user_info_frame)
-nb_entry.grid(row=3, column=0)
+        nviet_label = tk.Label(user_info_frame, text="Ngày viết")
+        nviet_label.grid(row=0, column=2)
+        self.ngayviet_entry = tk.Entry(user_info_frame)
+        self.ngayviet_entry.grid(row=1, column=2)
 
-nvql_label = tkinter.Label(user_info_frame, text="Nhân viên QL")
-nvql_label.grid(row=2, column=1)
-nvql_combobox = ttk.Combobox(user_info_frame, values=["NVNS001", "NVNS002","NVNS003",])
-nvql_combobox.grid(row=3, column=1)
+        nb_label = tk.Label(user_info_frame, text="Nhà báo")
+        nb_label.grid(row=2, column=0)
+        self.nb_entry = tk.Entry(user_info_frame)
+        self.nb_entry.grid(row=3, column=0)
 
-# Button
-save_button= tkinter.Button(frame, text="Lưu", command=Create_DH)
-save_button.grid(row=3, column=0, sticky="news", padx=20, pady=10)
+        nvql_label = tk.Label(user_info_frame, text="Nhân viên QL")
+        nvql_label.grid(row=2, column=1)
+        self.nvql_combobox = ttk.Combobox(user_info_frame, values=["NVNS001", "NVNS002","NVNS003",])
+        self.nvql_combobox.grid(row=3, column=1)
 
-window.mainloop()
+        # Button
+        save_button = tk.Button(parent_frame, text="Lưu", command=self.create)
+        save_button.grid(row=3, column=0, sticky="news", padx=20, pady=10)
