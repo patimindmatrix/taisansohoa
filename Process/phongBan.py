@@ -39,7 +39,3 @@ class Create_PB:
             messagebox.showwarning(title="Error", message="Thông tin không được bỏ trống")
         else:
             print("Tên phòng ban:", tenpb)
-
-# Create the main window
-root = tk.Tk()
-app = Create_PB(root)
