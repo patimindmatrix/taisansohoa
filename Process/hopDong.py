@@ -6,7 +6,7 @@ class Create_HD:
     def __init__(self, root):
         self.root = root
         self.root.title("Thêm mới hợp đồng 123")
-        self.root.geometry("1000x400")  # Kích thước cửa sổ
+        self.root.geometry("650x400")  # Kích thước cửa sổ
 
         # Tạo Frame chứa cả cột tùy chọn và bảng thông tin
         frame = ttk.Frame(root, style="TFrame")

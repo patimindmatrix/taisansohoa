@@ -7,7 +7,7 @@ class Create_NCC:
     def __init__(self, root):
         self.root = root
         self.root.title("Thêm mới nhà cung cấp")
-        self.root.geometry("500x400")  # Kích thước cửa sổ
+        self.root.geometry("490x400")  # Kích thước cửa sổ
 
         # Tạo Frame chứa cả cột tùy chọn và bảng thông tin
         frame = ttk.Frame(root, style="TFrame")

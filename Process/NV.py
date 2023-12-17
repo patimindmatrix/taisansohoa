@@ -5,7 +5,7 @@ class Create_NV:
     def __init__(self, root):
         self.root = root
         self.root.title("Thêm mới nhân viên")
-        self.root.geometry("500x400")  # Kích thước cửa sổ
+        self.root.geometry("490x400")  # Kích thước cửa sổ
 
         # Tạo Frame chứa cả cột tùy chọn và bảng thông tin
         frame = ttk.Frame(root, style="TFrame")
