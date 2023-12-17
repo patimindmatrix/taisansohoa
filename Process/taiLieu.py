@@ -59,6 +59,9 @@ class Create_TL:
 
         tepdinhkem_label = tk.Label(user_info_frame, text="Tệp")
         tepdinhkem_label.grid(row=2, column=2)
+        self.tepdinhkem_entry = tk.Entry(user_info_frame)
+        self.tepdinhkem_entry.grid(row=3, column=2)
+
         tepdinhkem_btn = tk.Button(user_info_frame, text="Chọn tệp", command=self.open_file, bg="#000")
         tepdinhkem_btn.grid(row=3, column=2, padx=10)
 
