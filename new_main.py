@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from Process.NV import Create_NV
+from Process.hopDong import Create_HD
 
 from Process.phongBan import Create_PB
 from Process.KH import Create_KH
 root = tk.Tk()
-root.geometry('750x750')
+root.geometry('900x900')
 root.title('Tài sản số hóa')
 options_fm = tk.Frame(root)
 
@@ -174,7 +175,7 @@ def nhanvien_page():
         
     def open_new_window():
         create_phongban_root = tk.Tk()
-        home_page = Create_NV(create_phongban_root)
+        home_page = Create_HD(create_phongban_root)
         create_phongban_root.mainloop()
         
     def create_function_buttons(parent_frame):
@@ -285,6 +286,67 @@ def hopdong_page():
     hopdong_page_lb = tk.Label(hopdong_page_fm, text='Hợp đồng', font=('Arial', 25), fg='#0097e8')
     hopdong_page_lb.pack(pady=30)
     hopdong_page_fm.pack(fill=tk.BOTH, expand=True)
+    
+    def create_info_table(parent_frame):
+        # Tạo bảng thông tin với 4 hàng và 4 cột
+        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên phòng ban"), show="headings", style="Treeview")
+        tree.heading("ID", text="ID", anchor=tk.CENTER)
+        tree.heading("Tên phòng ban", text="Tên phòng ban", anchor=tk.CENTER)
+
+        for i in range(2):
+            tree.column(i, width=180, anchor=tk.CENTER)
+
+        # Sample data for the table
+        data = [
+            ("1", "PB001"),
+            ("1", "PB002"),
+            ("3", "PB003"),
+            ("3", "PB004"),
+        ]
+
+        for row in data:
+            tree.insert("", "end", values=row)
+
+        # Set up vertical scrollbar
+        scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
+        scroll_y.pack(side=tk.RIGHT, fill=tk.Y)
+
+        tree.pack(side=tk.TOP)
+        tree.configure(yscrollcommand=scroll_y.set)
+    
+    def open_new_window():
+        create_phongban_root = tk.Tk()
+        home_page = Create_HD(create_phongban_root)
+        create_phongban_root.mainloop()
+        
+    def create_function_buttons(parent_frame):
+        function_buttons_frame = ttk.Frame(parent_frame)
+        function_buttons_frame.pack(side=tk.TOP, pady=10)
+
+        button_add = tk.Button(function_buttons_frame, text="Thêm", command=open_new_window, font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add.pack(side=tk.LEFT, padx=10)
+
+        button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_edit.pack(side=tk.LEFT, padx=10)
+
+        button_delete = tk.Button(function_buttons_frame, text="Xóa", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_delete.pack(side=tk.LEFT, padx=10)
+
+        button_logout = tk.Button(function_buttons_frame, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_logout.pack(side=tk.LEFT, padx=10)
+
+
+    def insert_options(tree, options):
+        for option, sub_options in options:
+            item = tree.insert("", "end", values=(option,))
+            if sub_options:
+                insert_options(tree, sub_options)
+                tree.item(item, open=True)
+
+        # Tạo bảng thông tin
+    create_info_table(hopdong_page_fm)
+    create_function_buttons(hopdong_page_fm)
+    
 def tailieu_page(): 
     tailieu_page_fm = tk.Frame(main_fm)
     tailieu_page_lb = tk.Label(tailieu_page_fm, text='Tài liệu', font=('Arial', 25), fg='#0097e8')
