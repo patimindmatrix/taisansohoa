@@ -72,8 +72,8 @@ def phongban_page():
     
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên phòng ban"), show="headings", style="Treeview")
-        tree.heading("ID", text="ID", anchor=tk.CENTER)
+        tree = ttk.Treeview(parent_frame, columns=("MAPB", "Tên phòng ban"), show="headings", style="Treeview")
+        tree.heading("MAPB", text="MAPB", anchor=tk.CENTER)
         tree.heading("Tên phòng ban", text="Tên phòng ban", anchor=tk.CENTER)
 
         for i in range(2):
@@ -141,21 +141,24 @@ def nhanvien_page():
     nhanvien_page_fm.pack(fill=tk.BOTH, expand=True)
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên", "Chức Vụ", "Lương"), show="headings", style="Treeview")
-        tree.heading("ID", text="ID", anchor=tk.CENTER)
+        tree = ttk.Treeview(parent_frame, columns=("MANV", "Tên", "Phòng ban", "SDT","Email","STKNH","ĐC"), show="headings", style="Treeview")
+        tree.heading("MANV", text="MANV", anchor=tk.CENTER)
         tree.heading("Tên", text="Tên", anchor=tk.CENTER)
-        tree.heading("Chức Vụ", text="Chức Vụ", anchor=tk.CENTER)
-        tree.heading("Lương", text="Lương", anchor=tk.CENTER)
+        tree.heading("Phòng ban", text="Phòng ban", anchor=tk.CENTER)
+        tree.heading("SDT", text="SDT", anchor=tk.CENTER)
+        tree.heading("Email", text="Email", anchor=tk.CENTER)
+        tree.heading("STKNH", text="STKNH", anchor=tk.CENTER)
+        tree.heading("ĐC", text="ĐC", anchor=tk.CENTER)
 
         for i in range(4):
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
         data = [
-            ("1", "Người 1", "Quản lý", "$5000"),
-            ("2", "Người 2", "Nhân viên", "$3000"),
-            ("3", "Người 3", "Nhân viên", "$3500"),
-            ("4", "Người 4", "Quản lý", "$4800"),
+            ("1", "Người 1", "Quản lý", "$5000","","",""),
+            ("2", "Người 2", "Nhân viên", "$3000","","",""),
+            ("3", "Người 3", "Nhân viên", "$3500","","",""),
+            ("4", "Người 4", "Quản lý", "$4800","","",""),
         ]
 
         for row in data:
@@ -207,21 +210,24 @@ def khachhang_page():
     khachhang_page_fm.pack(fill=tk.BOTH, expand=True)
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên", "Chức Vụ", "Lương"), show="headings", style="Treeview")
-        tree.heading("ID", text="ID", anchor=tk.CENTER)
+        tree = ttk.Treeview(parent_frame, columns=("MAKH", "Tên", "SDT", "Email","MST","ĐC","HĐ"), show="headings", style="Treeview")
+        tree.heading("MAKH", text="MAKH", anchor=tk.CENTER)
         tree.heading("Tên", text="Tên", anchor=tk.CENTER)
-        tree.heading("Chức Vụ", text="Chức Vụ", anchor=tk.CENTER)
-        tree.heading("Lương", text="Lương", anchor=tk.CENTER)
+        tree.heading("SDT", text="SDT", anchor=tk.CENTER)
+        tree.heading("Email", text="Email", anchor=tk.CENTER)
+        tree.heading("MST", text="MST", anchor=tk.CENTER)
+        tree.heading("ĐC", text="ĐC", anchor=tk.CENTER)
+        tree.heading("HĐ", text="HĐ", anchor=tk.CENTER)
 
         for i in range(4):
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
         data = [
-            ("1", "Người 1", "Quản lý", "$5000"),
-            ("2", "Người 2", "Nhân viên", "$3000"),
-            ("3", "Người 3", "Nhân viên", "$3500"),
-            ("4", "Người 4", "Quản lý", "$4800"),
+            ("1", "Người 1", "Quản lý", "$5000","","",""),
+            ("2", "Người 2", "Nhân viên", "$3000","","",""),
+            ("3", "Người 3", "Nhân viên", "$3500","","",""),
+            ("4", "Người 4", "Quản lý", "$4800","","",""),
         ]
 
         for row in data:

@@ -5,7 +5,7 @@ class Create_NV:
     def __init__(self, root):
         self.root = root
         self.root.title("Thêm mới nhân viên")
-        self.root.geometry("700x400")  # Kích thước cửa sổ
+        self.root.geometry("500x400")  # Kích thước cửa sổ
 
         # Tạo Frame chứa cả cột tùy chọn và bảng thông tin
         frame = ttk.Frame(root, style="TFrame")
@@ -64,15 +64,6 @@ class Create_NV:
         self.stknh_entry = tk.Entry(user_info_frame)
         self.stknh_entry.grid(row=3, column=2)
 
-        mk_label = tk.Label(user_info_frame, text="Mật khẩu")
-        mk_label.grid(row=4, column=0)
-        self.mk_entry = tk.Entry(user_info_frame, show="*")
-        self.mk_entry.grid(row=5, column=0)
-
-        mkl_label = tk.Label(user_info_frame, text="Nhập lại MK")
-        mkl_label.grid(row=4, column=1)
-        self.mkl_entry = tk.Entry(user_info_frame, show="*")
-        self.mkl_entry.grid(row=5, column=1)
 
         dc_label = tk.Label(user_info_frame, text="Địa chỉ")
         dc_label.grid(row=6, column=0)
