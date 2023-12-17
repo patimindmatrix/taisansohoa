@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from Process.NV import Create_NV
+
+from Process.phongBan import Create_PB
 root = tk.Tk()
 root.geometry('750x750')
 root.title('Tài sản số hóa')
@@ -69,21 +72,19 @@ def phongban_page():
     
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên", "Chức Vụ", "Lương"), show="headings", style="Treeview")
+        tree = ttk.Treeview(parent_frame, columns=("ID", "Tên phòng ban"), show="headings", style="Treeview")
         tree.heading("ID", text="ID", anchor=tk.CENTER)
-        tree.heading("Tên", text="Tên", anchor=tk.CENTER)
-        tree.heading("Chức Vụ", text="Chức Vụ", anchor=tk.CENTER)
-        tree.heading("Lương", text="Lương", anchor=tk.CENTER)
+        tree.heading("Tên phòng ban", text="Tên phòng ban", anchor=tk.CENTER)
 
-        for i in range(4):
+        for i in range(2):
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
         data = [
-            ("1", "Người 1", "Quản lý", "$5000"),
-            ("2", "Người 2", "Nhân viên", "$3000"),
-            ("3", "Người 3", "Nhân viên", "$3500"),
-            ("4", "Người 4", "Quản lý", "$4800"),
+            ("1", "PB001"),
+            ("1", "PB002"),
+            ("3", "PB003"),
+            ("3", "PB004"),
         ]
 
         for row in data:
@@ -95,12 +96,17 @@ def phongban_page():
 
         tree.pack(side=tk.TOP)
         tree.configure(yscrollcommand=scroll_y.set)
+    
+    def open_new_window():
+        create_phongban_root = tk.Tk()
+        home_page = Create_PB(create_phongban_root)
+        create_phongban_root.mainloop()
         
     def create_function_buttons(parent_frame):
         function_buttons_frame = ttk.Frame(parent_frame)
         function_buttons_frame.pack(side=tk.TOP, pady=10)
 
-        button_add = tk.Button(function_buttons_frame, text="Thêm", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add = tk.Button(function_buttons_frame, text="Thêm", command=open_new_window, font=("Arial", 14), bg="#5f6f79", fg="black")
         button_add.pack(side=tk.LEFT, padx=10)
 
         button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
@@ -123,6 +129,8 @@ def phongban_page():
         # Tạo bảng thông tin
     create_info_table(phongban_page_fm)
     create_function_buttons(phongban_page_fm)
+    
+    
 
         # Tạo nút và chức năng
     
@@ -160,11 +168,16 @@ def nhanvien_page():
         tree.pack(side=tk.TOP)
         tree.configure(yscrollcommand=scroll_y.set)
         
+    def open_new_window():
+        create_phongban_root = tk.Tk()
+        home_page = Create_NV(create_phongban_root)
+        create_phongban_root.mainloop()
+        
     def create_function_buttons(parent_frame):
         function_buttons_frame = ttk.Frame(parent_frame)
         function_buttons_frame.pack(side=tk.TOP, pady=10)
 
-        button_add = tk.Button(function_buttons_frame, text="Thêm", font=("Arial", 14), bg="#5f6f79", fg="black")
+        button_add = tk.Button(function_buttons_frame, text="Thêm", font=("Arial", 14), command=open_new_window, bg="#5f6f79", fg="black")
         button_add.pack(side=tk.LEFT, padx=10)
 
         button_edit = tk.Button(function_buttons_frame, text="Sửa", font=("Arial", 14), bg="#5f6f79", fg="black")
