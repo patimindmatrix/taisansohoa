@@ -28,7 +28,6 @@ def create_tscd(tscd_data):
     with driver.session() as session:
         result = session.run(
             "CREATE (n:TSCD {MATSCD: $MATSCD, TenTSCD: $TenTSCD, TT: $TT, GiaTri: $GiaTri, THSD: $THSD, NgayMua: $NgayMua, KhauHao: $KhauHao }) RETURN n",
-            "match(a:TSCD{MATSCD: $MATSCD}), ("
             **tscd_data.dict()
         )
         return result.single()[0]

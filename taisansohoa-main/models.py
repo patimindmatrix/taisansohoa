@@ -55,10 +55,10 @@ class TSCD(BaseModel):
     MATSCD: Optional[str]= None
     TenTSCD: str
     TT: str
-    GiaTri: int
-    THSD: int
+    GiaTri: str
+    THSD: str
     NgayMua: str
-    KhauHao: int
+    KhauHao: str
 
 class CCDC(BaseModel):
     MACCDC: Optional[str] = None

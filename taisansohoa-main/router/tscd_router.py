@@ -8,7 +8,7 @@ from typing import List
 router = APIRouter()
 
 @router.get("/", response_model=List[TSCD])
-async def get_all_tl():
+async def get_all_tscd():
     try:
         all_tscd = tscd_model.get_all_tscd()  # Replace this with your actual function to fetch all NV
         return all_tscd

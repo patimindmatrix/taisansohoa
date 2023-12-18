@@ -16,7 +16,7 @@ from Process.CCDC import Create_CCDC
 import requests
 
 root = tk.Tk()
-root.geometry('1300x500')
+root.geometry('1500x500')
 root.title('Tài sản số hóa')
 options_fm = tk.Frame(root)
 
@@ -90,26 +90,29 @@ bb_btn.place(x=1125, y=0, width=125, height=35)
 bb_indicator_lb = tk.Label(options_fm, bg='#fff')
 bb_indicator_lb.place(x=1147, y=30, width=80, height=2)
 
+tscd_btn = tk.Button(options_fm, text='Tài sản CD', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=tscd_indicator_lb, page=tscd_page))
+tscd_btn.place(x=1250, y=0, width=125, height=35)
+tscd_indicator_lb = tk.Label(options_fm, bg='#fff')
+tscd_indicator_lb.place(x=1272, y=30, width=80, height=2)
+
 # vbpq_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=vbpq_indicator_lb, page=vbpq_page))
 # vbpq_btn.place(x=1228, y=0, width=125, height=35)
 
 # vbpq_indicator_lb = tk.Label(options_fm, bg='#fff')
 # vbpq_indicator_lb.place(x=1250, y=30, width=80, height=2)
 
-# tscd_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=tscd_indicator_lb, page=tscd_page))
-# tscd_btn.place(x=1353, y=0, width=125, height=35)
 
-# tscd_indicator_lb = tk.Label(options_fm, bg='#fff')
-# tscd_indicator_lb.place(x=1375, y=30, width=80, height=2)
+
+
 
 # ccdc_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=ccdc_indicator_lb, page=ccdc_page))
 # ccdc_btn.place(x=1478, y=0, width=125, height=35)
 
 # ccdc_indicator_lb = tk.Label(options_fm, bg='#fff')
 # ccdc_indicator_lb.place(x=1500, y=30, width=80, height=2)
-button_logout = tk.Button(options_fm, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79",
-                                  fg="black")
-button_logout.place(x=1250, y=30, width=80, height=2)
+# button_logout = tk.Button(options_fm, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79",
+#                                   fg="black")
+# button_logout.place(x=1250, y=30, width=80, height=2)
 options_fm.pack(pady=5)
 options_fm.pack_propagate(False)
 options_fm.configure(width=1500, height=35, background='#0097e8')
@@ -571,7 +574,7 @@ def tscd_page():
 
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("MATSCD", "Tên TSCĐ", "Trạng thái", "Giá trị","Thời hạn SD","Ngày mua","Khấu hao", "Phòng ban", "Nhân viên SD"), show="headings", style="Treeview")
+        tree = ttk.Treeview(parent_frame, columns=("MATSCD", "Tên TSCĐ", "Trạng thái", "Giá trị","Thời hạn SD","Ngày mua","Khấu hao"), show="headings", style="Treeview")
         tree.heading("MATSCD", text="MATSCD", anchor=tk.CENTER)
         tree.heading("Tên TSCĐ", text="Tên TSCĐ", anchor=tk.CENTER)
         tree.heading("Trạng thái", text="Trạng thái", anchor=tk.CENTER)
@@ -579,21 +582,24 @@ def tscd_page():
         tree.heading("Thời hạn SD", text="Thời hạn SD", anchor=tk.CENTER)
         tree.heading("Ngày mua", text="Ngày mua", anchor=tk.CENTER)
         tree.heading("Khấu hao", text="Khấu hao", anchor=tk.CENTER)
-        tree.heading("Phòng ban", text="Phòng ban", anchor=tk.CENTER)
-        tree.heading("Nhân viên SD", text="Nhân viên SD", anchor=tk.CENTER)
         for i in range(4):
             tree.column(i, width=180, anchor=tk.CENTER)
-
         # Sample data for the table
-        data = [
-            ("1", "Người 1", "Quản lý", "$5000","","","","",""),
-            ("2", "Người 2", "Nhân viên", "$3000","","","","",""),
-            ("3", "Người 3", "Nhân viên", "$3500","","","","",""),
-            ("4", "Người 4", "Quản lý", "$4800","","","","",""),
-        ]
+        try:
+            response = requests.get("http://127.0.0.1:8000/tscd")  # Replace with your actual API endpoint
+            response.raise_for_status()
+            data = response.json()
 
-        for row in data:
-            tree.insert("", "end", values=row)
+            # Clear existing data in the Treeview
+            for item in tree.get_children():
+                tree.delete(item)
+
+            # Insert data into the Treeview
+            for item in data:
+                values = (item["MATSCD"], item["TenTSCD"], item["TT"], item["GiaTri"], item["THSD"], item["NgayMua"], item["KhauHao"])  # Add more values as needed
+                tree.insert("", "end", values=values)
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
 
         # Set up vertical scrollbar
         scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
