@@ -17,6 +17,10 @@ from router.bb_router import router as bb_router
 from router.vbpq_router import router as vbpq_router
 app = FastAPI()
 
+@app.get("/")
+async def create_item():
+    return {"message": "Item created successfully"}
+
 app.include_router(user_router, prefix="/user", tags=["user"])
 app.include_router(ncc_router, prefix="/ncc", tags=["ncc"])
 app.include_router(pb_router, prefix="/pb", tags=["pb"])

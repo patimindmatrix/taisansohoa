@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 import uuid
 import process
 from models import NV
+from process import nv as nv_model
 
 router = APIRouter()
 
@@ -10,7 +11,7 @@ router = APIRouter()
 async def create_nv(nv: NV):
     try:
         nv.MANV = str(uuid.uuid4())  # Generate a unique ID
-        create_nv = process.create_nv(nv)
+        create_nv = nv_model.create_nv(nv)
         if create_nv:
             return create_nv
         raise HTTPException(status_code=500, detail="Error creating NV")
@@ -22,7 +23,7 @@ async def create_nv(nv: NV):
 @router.get("/{manv}", response_model=NV)
 async def read_nv(manv: str):
     try:
-        nv = process.get_nv(manv)
+        nv = nv_model.get_nv(manv)
         if nv:
             return nv
         raise HTTPException(status_code=404, detail="NV not found")
@@ -33,7 +34,7 @@ async def read_nv(manv: str):
 @router.put("/{manv}", response_model=NV)
 async def update_nv(manv: str, nv: NV):
     try:
-        update_nv = process.update_nv(manv, nv)
+        update_nv = nv_model.update_nv(manv, nv)
         if update_nv:
             return update_nv
         raise HTTPException(status_code=404, detail="NV not found")
@@ -44,7 +45,7 @@ async def update_nv(manv: str, nv: NV):
 @router.delete("/{manv}", response_model=NV)
 async def delete_nv(manv: str):
     try:
-        delete_nv = process.delete_nv(manv)
+        delete_nv = nv_model.delete_nv(manv)
         if delete_nv:
             return delete_nv
         raise HTTPException(status_code=404, detail="NV not found")

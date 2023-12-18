@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 import uuid
 import process
 from models import NCC
-from process import ncc
+from process import ncc as ncc_model
 
 router = APIRouter()
 
@@ -11,7 +11,7 @@ router = APIRouter()
 async def create_ncc(ncc: NCC):
     try:
         ncc.MANCC = str(uuid.uuid4())  # Generate a unique ID
-        created_ncc = ncc.create_ncc(ncc)
+        created_ncc = ncc_model.create_ncc(ncc)
         if created_ncc:
             return created_ncc
         raise HTTPException(status_code=500, detail="Error creating NCC")
@@ -22,7 +22,7 @@ async def create_ncc(ncc: NCC):
 @router.get("/{mancc}", response_model=NCC)
 async def read_ncc(mancc: str, ncc: NCC):
     try:
-        ncc = ncc.get_ncc(mancc)
+        ncc = ncc_model.get_ncc(mancc)
         if ncc:
             return ncc
         raise HTTPException(status_code=404, detail="NCC not found")
@@ -33,7 +33,7 @@ async def read_ncc(mancc: str, ncc: NCC):
 @router.put("/{mancc}", response_model=NCC)
 async def update_ncc(mancc: str, ncc: NCC):
     try:
-        updated_ncc = ncc.update_ncc(mancc, ncc)
+        updated_ncc = ncc_model.update_ncc(mancc, ncc)
         if updated_ncc:
             return updated_ncc
         raise HTTPException(status_code=404, detail="NCC not found")
@@ -43,7 +43,7 @@ async def update_ncc(mancc: str, ncc: NCC):
 @router.delete("/{mancc}", response_model=NCC)
 async def delete_ncc(mancc: str, ncc: NCC):
     try:
-        deleted_ncc = ncc.delete_ncc(mancc)
+        deleted_ncc = ncc_model.delete_ncc(mancc)
         if deleted_ncc:
             return deleted_ncc
         raise HTTPException(status_code=404, detail="NCC not found")
