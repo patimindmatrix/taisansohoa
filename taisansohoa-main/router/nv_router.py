@@ -20,7 +20,6 @@ async def get_all_nv():
 @router.post("/", response_model=NV)
 async def create_nv(nv: NV):
     try:
-        nv.MANV = str(uuid.uuid4())  # Generate a unique ID
         create_nv = nv_model.create_nv(nv)
         if create_nv:
             return create_nv

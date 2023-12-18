@@ -18,7 +18,6 @@ async def get_all_tl():
 @router.post("/", response_model=VBPQ)
 async def create_vbpq(vbpq: VBPQ):
     try:
-        vbpq.MAVBPQ = str(uuid.uuid4())  # Generate a unique ID
         create_vbpq = vbpq_model.create_vbpq(vbpq)
         if create_vbpq:
             return create_vbpq

@@ -19,7 +19,6 @@ async def get_all_tl():
 @router.post("/", response_model=TL)
 async def create_tl(tl: TL):
     try:
-        tl.MATL = str(uuid.uuid4())  # Generate a unique ID
         create_tl = tl_model.create_tl(tl)
         if create_tl:
             return create_tl

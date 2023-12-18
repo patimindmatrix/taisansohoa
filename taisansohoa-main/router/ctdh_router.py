@@ -18,7 +18,6 @@ async def get_all_ctdh():
 
 @router.post("/", response_model=CTDH)
 async def create_ctdh(ctdh: CTDH):
-    ctdh.MACTDH = str(uuid.uuid4())  # Generate a unique ID
     create_ctdh = ctdh_model.create_ctdh(ctdh)
     if create_ctdh:
         return create_ctdh

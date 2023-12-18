@@ -20,7 +20,6 @@ async def get_all_ncc():
 @router.post("/", response_model=NCC)
 async def create_ncc(ncc: NCC):
     try:
-        ncc.MANCC = str(uuid.uuid4())  # Generate a unique ID
         created_ncc = ncc_model.create_ncc(ncc)
         if created_ncc:
             return created_ncc

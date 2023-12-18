@@ -19,7 +19,6 @@ async def get_all_kh():
 @router.post("/", response_model=KH)
 async def create_kh(kh: KH):
     try:
-        kh.MAKH = str(uuid.uuid4())  # Generate a unique ID
         created_kh = kh_model.create_kh(kh)
         if created_kh:
             return created_kh

@@ -19,7 +19,6 @@ async def get_all_nvl():
 @router.post("/", response_model=NVL)
 async def create_nvl(nvl: NVL):
     try:
-        nvl.MANVL = str(uuid.uuid4())  # Generate a unique ID
         create_nvl = nvl_model.create_nvl(nvl)
         if create_nvl:
             return create_nvl

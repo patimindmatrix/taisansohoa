@@ -18,7 +18,6 @@ async def get_all_dh():
 
 @router.post("/", response_model=DH)
 async def create_dh(dh: DH):
-    dh.MADH = str(uuid.uuid4())  # Generate a unique ID
     create_dh = dh_model.create_dh(dh)
     if create_dh:
         return create_dh

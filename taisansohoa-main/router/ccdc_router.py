@@ -19,7 +19,6 @@ async def get_all_ccdc():
 
 @router.post("/", response_model=CCDC)
 async def create_ccdc(ccdc: CCDC):
-    ccdc.MACCDC = str(uuid.uuid4())  # Generate a unique ID
     create_ccdc = ccdc_model.create_ccdc(ccdc)
     if create_ccdc:
         return create_ccdc

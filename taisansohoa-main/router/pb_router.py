@@ -19,7 +19,6 @@ async def get_all_pb():
 @router.post("/", response_model=PB)
 async def create_pb(pb: PB):
     try:
-        pb.MAPB = str(uuid.uuid4())
         created_pb = pb_model.create_pb(pb)
         if created_pb:
             return created_pb

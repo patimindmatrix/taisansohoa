@@ -121,22 +121,29 @@ def phongban_page():
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
         tree = ttk.Treeview(parent_frame, columns=("MAPB", "Tên phòng ban"), show="headings", style="Treeview")
-        tree.heading("MAPB", text="MAPB", anchor=tk.CENTER)
+        tree.heading("MAPB", text="Mã phòng ban", anchor=tk.CENTER)
         tree.heading("Tên phòng ban", text="Tên phòng ban", anchor=tk.CENTER)
 
         for i in range(2):
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
-        data = [
-            ("1", "PB001"),
-            ("1", "PB002"),
-            ("3", "PB003"),
-            ("3", "PB004"),
-        ]
+        try:
+            response = requests.get("http://127.0.0.1:8000/pb")  # Replace with your actual API endpoint
+            response.raise_for_status()
+            data = response.json()
 
-        for row in data:
-            tree.insert("", "end", values=row)
+            # Clear existing data in the Treeview
+            for item in tree.get_children():
+                tree.delete(item)
+
+            # Insert data into the Treeview
+            for item in data:
+                values = (item["MAPB"], item["TenPB"])  # Add more values as needed
+                tree.insert("", "end", values=values)
+
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
 
         # Set up vertical scrollbar
         scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
@@ -202,15 +209,22 @@ def nhanvien_page():
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
-        data = [
-            ("1", "Người 1", "Quản lý", "$5000","","",""),
-            ("2", "Người 2", "Nhân viên", "$3000","","",""),
-            ("3", "Người 3", "Nhân viên", "$3500","","",""),
-            ("4", "Người 4", "Quản lý", "$4800","","",""),
-        ]
+        try:
+            response = requests.get("http://127.0.0.1:8000/nv")  # Replace with your actual API endpoint
+            response.raise_for_status()
+            data = response.json()
 
-        for row in data:
-            tree.insert("", "end", values=row)
+            # Clear existing data in the Treeview
+            for item in tree.get_children():
+                tree.delete(item)
+
+            # Insert data into the Treeview
+            for item in data:
+                values = (item["MANV"], item["TenNV"], item["TenNV"], item["SDT"], item["EMAIL"], item["STKNH"], item["DC"])  # Add more values as needed
+                tree.insert("", "end", values=values)
+
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
 
         # Set up vertical scrollbar
         scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)

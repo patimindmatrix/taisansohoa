@@ -19,7 +19,6 @@ async def get_all_sp():
 @router.post("/", response_model=SP)
 async def create_sp(sp: SP):
     try:
-        sp.MASP = str(uuid.uuid4())  # Generate a unique ID
         create_sp = sp_model.create_sp(sp)
         if create_sp:
             return create_sp

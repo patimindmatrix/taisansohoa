@@ -18,7 +18,6 @@ async def get_all_hd():
 
 @router.post("/", response_model=HD)
 async def create_hd(hd: HD):
-    hd.MAHD = str(uuid.uuid4())  # Generate a unique ID
     create_hd = hd_model.create_hd(hd)
     if create_hd:
         return create_hd

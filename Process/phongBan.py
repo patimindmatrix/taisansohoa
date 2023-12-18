@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+import requests
+
 class Create_PB:
     def __init__(self, root):
         self.root = root
@@ -39,3 +41,14 @@ class Create_PB:
             messagebox.showwarning(title="Error", message="Thông tin không được bỏ trống")
         else:
             print("Tên phòng ban:", tenpb)
+            data = {
+                "MAPB": mapb,
+                "TenPB": tenpb,
+            }
+            try:
+                response = requests.post("http://127.0.0.1:8000/pb", json=data)  # Replace with your actual API endpoint
+                response.raise_for_status()
+                data = response.json()
+
+            except requests.RequestException as e:
+                print(f"An error occurred: {e}")

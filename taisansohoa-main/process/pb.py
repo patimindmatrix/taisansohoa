@@ -26,7 +26,7 @@ def get_all_pb():
 def create_pb(pb_data):
     with driver.session() as session:
         result = session.run(
-            "CREATE (n:PB {MAPB: $MAPB, TenPB: $TePB}) RETURN n",
+            "CREATE (n:PB {MAPB: $MAPB, TenPB: $TenPB}) RETURN n",
             **pb_data.dict()
         )
         return result.single()[0]

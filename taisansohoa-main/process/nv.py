@@ -7,7 +7,7 @@ driver = GraphDatabase.driver(config.NEO4J_URI, auth=(
 
 def get_all_nv():
     with driver.session() as session:
-        result = session.run("MATCH (n:NV) WHERE n.MANV <> '' RETURN n")
+        result = session.run("MATCH (n:NV) WHERE n.MK <> '' RETURN n")
         data = result.data()
 
         # Xử lý dữ liệu trả về từ Neo4j
@@ -26,10 +26,10 @@ def get_all_nv():
 
 
 def create_nv(nv_data):
+    print(nv_data)
     with driver.session() as session:
         result = session.run(
-            "CREATE (n:NV {MANV: $MANV, TenNV: $TenNV, SDT: $SDT, EMAIL: $EMAIL, STKNH: $STKNH, DC: $DC}) RETURN n",
-            "match (a:NV{MANV:$MANV}),(b:PB{MAPB:PBSX}) create (a) -[:belong_to]->(b)"
+            "CREATE (n:NV {MANV: $MANV, TenNV: $TenNV, SDT: $SDT, EMAIL: $EMAIL, STKNH: $STKNH, DC: $DC, MK: $MK}) RETURN n",
             **nv_data.dict()
         )
         return result.single()[0]

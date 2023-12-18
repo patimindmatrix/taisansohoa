@@ -20,7 +20,6 @@ async def get_all_tl():
 @router.post("/", response_model=TSCD)
 async def create_tscd(tscd: TSCD):
     try:
-        tscd.MATSCD = str(uuid.uuid4())  # Generate a unique ID
         create_tscd = tscd_model.create_tscd(tscd)
         if create_tscd:
             return create_tscd

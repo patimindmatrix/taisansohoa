@@ -18,7 +18,6 @@ async def get_all_bb():
 
 @router.post("/", response_model=BB)
 async def create_bb(bb: BB):
-    bb.MABB = str(uuid.uuid4())  # Generate a unique ID
     create_bb = bb_model.create_bb(bb)
     if create_bb:
         return create_bb
