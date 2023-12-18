@@ -3,8 +3,18 @@ import uuid
 import process
 from models import NCC
 from process import ncc as ncc_model
+from typing import List
 
 router = APIRouter()
+
+@router.get("/", response_model=List[NCC])
+async def get_all_ncc():
+    try:
+        all_ncc = ncc_model.get_all_ncc()  # Replace this with your actual function to fetch all NV
+        return all_ncc
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
 @router.post("/", response_model=NCC)

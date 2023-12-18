@@ -3,8 +3,18 @@ import uuid
 import process
 from models import NV
 from process import nv as nv_model
+from typing import List
 
 router = APIRouter()
+
+@router.get("/", response_model=List[NV])
+async def get_all_nv():
+    try:
+        all_nv = nv_model.get_all_nv()  # Replace this with your actual function to fetch all NV
+        return all_nv
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
 @router.post("/", response_model=NV)
