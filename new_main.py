@@ -16,7 +16,7 @@ from Process.CCDC import Create_CCDC
 import requests
 
 root = tk.Tk()
-root.geometry('1650x500')
+root.geometry('1300x500')
 root.title('Tài sản số hóa')
 options_fm = tk.Frame(root)
 
@@ -72,45 +72,49 @@ tailieu_btn.place(x=750, y=0, width=125, height=35)
 tailieu_indicator_lb = tk.Label(options_fm, bg='#fff')
 tailieu_indicator_lb.place(x=772, y=30, width=80, height=2)
 
-nvl_btn = tk.Button(options_fm, text='Tài liệu', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=nvl_indicator_lb, page=nvl_page))
-nvl_btn.place(x=853, y=0, width=125, height=35)
+nvl_btn = tk.Button(options_fm, text='Vật liệu', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=nvl_indicator_lb, page=nvl_page))
+nvl_btn.place(x=875, y=0, width=125, height=35)
 
 nvl_indicator_lb = tk.Label(options_fm, bg='#fff')
-nvl_indicator_lb.place(x=875, y=30, width=80, height=2)
+nvl_indicator_lb.place(x=897, y=30, width=80, height=2)
 
 sp_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=sp_indicator_lb, page=sanpham_page))
-sp_btn.place(x=978, y=0, width=125, height=35)
+sp_btn.place(x=1000, y=0, width=125, height=35)
 
 sp_indicator_lb = tk.Label(options_fm, bg='#fff')
-sp_indicator_lb.place(x=1000, y=30, width=80, height=2)
+sp_indicator_lb.place(x=1022, y=30, width=80, height=2)
 
 bb_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=bb_indicator_lb, page=baibao_page))
-bb_btn.place(x=1103, y=0, width=125, height=35)
+bb_btn.place(x=1125, y=0, width=125, height=35)
 
 bb_indicator_lb = tk.Label(options_fm, bg='#fff')
-bb_indicator_lb.place(x=1125, y=30, width=80, height=2)
+bb_indicator_lb.place(x=1147, y=30, width=80, height=2)
 
-vbpq_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=vbpq_indicator_lb, page=vbpq_page))
-vbpq_btn.place(x=1228, y=0, width=125, height=35)
+# vbpq_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=vbpq_indicator_lb, page=vbpq_page))
+# vbpq_btn.place(x=1228, y=0, width=125, height=35)
 
-vbpq_indicator_lb = tk.Label(options_fm, bg='#fff')
-vbpq_indicator_lb.place(x=1250, y=30, width=80, height=2)
+# vbpq_indicator_lb = tk.Label(options_fm, bg='#fff')
+# vbpq_indicator_lb.place(x=1250, y=30, width=80, height=2)
 
-tscd_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=tscd_indicator_lb, page=tscd_page))
-tscd_btn.place(x=1353, y=0, width=125, height=35)
+# tscd_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=tscd_indicator_lb, page=tscd_page))
+# tscd_btn.place(x=1353, y=0, width=125, height=35)
 
-tscd_indicator_lb = tk.Label(options_fm, bg='#fff')
-tscd_indicator_lb.place(x=1375, y=30, width=80, height=2)
+# tscd_indicator_lb = tk.Label(options_fm, bg='#fff')
+# tscd_indicator_lb.place(x=1375, y=30, width=80, height=2)
 
-ccdc_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=ccdc_indicator_lb, page=ccdc_page))
-ccdc_btn.place(x=1478, y=0, width=125, height=35)
+# ccdc_btn = tk.Button(options_fm, text='Sản phẩm', font=('Arial', 13), bd=0, fg='#0097e8', activeforeground='#0097e8', command=lambda: switch(indicator_lb=ccdc_indicator_lb, page=ccdc_page))
+# ccdc_btn.place(x=1478, y=0, width=125, height=35)
 
-ccdc_indicator_lb = tk.Label(options_fm, bg='#fff')
-ccdc_indicator_lb.place(x=1500, y=30, width=80, height=2)
-
+# ccdc_indicator_lb = tk.Label(options_fm, bg='#fff')
+# ccdc_indicator_lb.place(x=1500, y=30, width=80, height=2)
+button_logout = tk.Button(options_fm, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79",
+                                  fg="black")
+button_logout.place(x=1250, y=30, width=80, height=2)
 options_fm.pack(pady=5)
 options_fm.pack_propagate(False)
-options_fm.configure(width=750, height=35, background='#0097e8')
+options_fm.configure(width=1500, height=35, background='#0097e8')
+
+
 
 def phongban_page(): 
     phongban_page_fm = tk.Frame(main_fm)
@@ -425,27 +429,32 @@ def hopdong_page():
     
     def create_info_table(parent_frame):
         # Tạo bảng thông tin với 4 hàng và 4 cột
-        tree = ttk.Treeview(parent_frame, columns=("MAHD", "Tên hợp đồng", "Ngày hợp đồng", "Ngày tải lên", "Người tạo","Đối tượng", "Tệp đính kèm"), show="headings", style="Treeview")
+        tree = ttk.Treeview(parent_frame, columns=("MAHD", "Tên hợp đồng", "Ngày hợp đồng", "Ngày tải lên", "Tệp đính kèm"), show="headings", style="Treeview")
         tree.heading("MAHD", text="MAHD", anchor=tk.CENTER)
         tree.heading("Tên hợp đồng", text="Tên hợp đồng", anchor=tk.CENTER)
         tree.heading("Ngày hợp đồng", text="Ngày hợp đồng", anchor=tk.CENTER)
         tree.heading("Ngày tải lên", text="Ngày tải lên", anchor=tk.CENTER)
-        tree.heading("Người tạo", text="Người tạo", anchor=tk.CENTER)
-        tree.heading("Đối tượng", text="Đối tượng", anchor=tk.CENTER)
         tree.heading("Tệp đính kèm", text="Tệp đính kèm", anchor=tk.CENTER)
         for i in range(2):
             tree.column(i, width=180, anchor=tk.CENTER)
 
         # Sample data for the table
-        data = [
-            ("1", "HĐ 1","","","","",""),
-            ("1", "HĐ 1","","","","",""),
-            ("3", "HĐ 1","","","","",""),
-            ("3", "HĐ 1","","","","",""),
-        ]
+        try:
+            response = requests.get("http://127.0.0.1:8000/hd")  # Replace with your actual API endpoint
+            response.raise_for_status()
+            data = response.json()
 
-        for row in data:
-            tree.insert("", "end", values=row)
+            # Clear existing data in the Treeview
+            for item in tree.get_children():
+                tree.delete(item)
+
+            # Insert data into the Treeview
+            for item in data:
+                values = (item["MAHD"], item["TenHD"], item["NgayTao"], item["NgayTaiLen"], item["TepDinhKem"])  # Add more values as needed
+                tree.insert("", "end", values=values)
+
+        except requests.RequestException as e:
+            print(f"An error occurred: {e}")
 
         # Set up vertical scrollbar
         scroll_y = ttk.Scrollbar(parent_frame, orient="vertical", command=tree.yview)
@@ -541,9 +550,7 @@ def tailieu_page():
         button_delete = tk.Button(function_buttons_frame, text="Xóa", font=("Arial", 14), bg="#5f6f79", fg="black")
         button_delete.pack(side=tk.LEFT, padx=10)
 
-        button_logout = tk.Button(function_buttons_frame, text="Đăng Xuất", font=("Arial", 14), bg="#5f6f79",
-                                  fg="black")
-        button_logout.pack(side=tk.LEFT, padx=10)
+        
 
     def insert_options(tree, options):
         for option, sub_options in options:

@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/", response_model=List[HD])
 async def get_all_hd():
     try:
-        all_hd = hd_model.get_all_dh()  # Replace this with your actual function to fetch all NV
+        all_hd = hd_model.get_all_hd()  # Replace this with your actual function to fetch all NV
         return all_hd
     except Exception as e:
         print(f"An error occurred: {e}")
